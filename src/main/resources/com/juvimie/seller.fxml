@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.juvimie.SellerController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="712.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -23,18 +23,18 @@
             <Insets left="20.0" />
          </padding>
       </HBox>
-      <TableView layoutX="25.0" layoutY="100.0" prefHeight="374.0" prefWidth="673.0">
+      <TableView fx:id="storeTable" layoutX="25.0" layoutY="100.0" prefHeight="374.0" prefWidth="673.0">
         <columns>
-          <TableColumn editable="false" prefWidth="118.0" resizable="false" text="Product Name" />
-          <TableColumn prefWidth="116.0" resizable="false" text="Prize" />
-            <TableColumn prefWidth="136.0" resizable="false" text="Quantity" />
-            <TableColumn prefWidth="159.0" resizable="false" text="Type of Product" />
-            <TableColumn prefWidth="143.0" resizable="false" text="Country of Origin" />
+          <TableColumn fx:id="productNameCol" editable="false" prefWidth="118.0" resizable="false" text="Product Name" />
+          <TableColumn fx:id="prizeCol" prefWidth="116.0" resizable="false" text="Prize" />
+            <TableColumn fx:id="QuantityCol" prefWidth="136.0" resizable="false" text="Quantity" />
+            <TableColumn fx:id="typeOfProductCol" prefWidth="159.0" resizable="false" text="Type of Product" />
+            <TableColumn fx:id="countryOfOrigin" prefWidth="143.0" resizable="false" text="Country of Origin" />
         </columns>
       </TableView>
-      <Button layoutX="25.0" layoutY="477.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Add Product" />
-      <Button layoutX="128.0" layoutY="477.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Edit Product" />
-      <Button layoutX="228.0" layoutY="477.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" text="Remove Product" />
-      <Button layoutX="639.0" layoutY="477.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Back" />
+      <Button fx:id="addProductBtn" layoutX="25.0" layoutY="477.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="25.0" prefWidth="85.0" text="Add Product" />
+      <Button fx:id="editProductBtn" layoutX="128.0" layoutY="477.0" mnemonicParsing="false" onAction="#editProduct" prefHeight="25.0" prefWidth="85.0" text="Edit Product" />
+      <Button fx:id="removeProductBtn" layoutX="228.0" layoutY="477.0" mnemonicParsing="false" onAction="#removeProduct" prefHeight="25.0" prefWidth="111.0" text="Remove Product" />
+      <Button fx:id="backBtn" layoutX="639.0" layoutY="477.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="59.0" text="Back" />
    </children>
 </AnchorPane>

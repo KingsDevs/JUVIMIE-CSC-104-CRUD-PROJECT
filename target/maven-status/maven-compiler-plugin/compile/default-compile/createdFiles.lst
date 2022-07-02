@@ -1,3 +1,4 @@
 com\juvimie\App.class
 com\juvimie\MainController.class
 module-info.class
+com\juvimie\SellerController.class
