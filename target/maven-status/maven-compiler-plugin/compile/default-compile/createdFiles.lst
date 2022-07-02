@@ -1,2 +1,3 @@
-module-info.class
 com\juvimie\App.class
+com\juvimie\MainController.class
+module-info.class
