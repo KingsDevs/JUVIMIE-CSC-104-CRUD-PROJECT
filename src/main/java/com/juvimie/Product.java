@@ -40,6 +40,11 @@ public class Product
         return productId;
     }
 
+    public void setProductId(int productId)
+    {
+        this.productId = productId;
+    }
+
     public String getProductName()
     {
         return productName;
@@ -137,9 +142,25 @@ public class Product
         preparedStatement.executeUpdate();
     }
 
-    public static void editProduct(Product product)
+    public static void editProduct(Product product) throws IOException, SQLException
     {
+        String sql = "UPDATE product SET product_name = ?, "
+                   + "product_prize = ?, quantity = ?, "
+                   + "product_type = ?, product_origin = ? "
+                   + "WHERE product_id = ?";
 
+        Connection connection = ConnSqlite.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        
+        preparedStatement.setString(1, product.getProductName());
+        preparedStatement.setDouble(2, product.getProductPrize());
+        preparedStatement.setInt(3, product.getQuantity());
+        preparedStatement.setString(4, product.getProductType());
+        preparedStatement.setString(5, product.getProductOrigin());
+        preparedStatement.setInt(6, product.getProductId());
+        
+        preparedStatement.executeUpdate();
+        
     }
 
     public static void deleteProduct(int id) throws IOException, SQLException

@@ -42,6 +42,7 @@ public class DialogController implements Initializable
     public final static int UPDATE_MODE = 2;
 
     private SellerController sellerController;
+    private Product productToEdit;
 
     public void setMode()
     {
@@ -51,6 +52,7 @@ public class DialogController implements Initializable
     public void setMode(Product product)
     {
         this.mode = UPDATE_MODE;
+        productToEdit = product;
 
         productNameField.setText(product.getProductName());
         prizeField.setText(product.getProductPrize().toString());
@@ -147,11 +149,18 @@ public class DialogController implements Initializable
             Product.insertProduct(newProduct);
             cancel(new ActionEvent());
         }
-
     }
 
-    private void editProduct()
+    private void editProduct() throws IOException, SQLException
     {
+        Product oldProduct = getProductFromFields();
+        
+        if(oldProduct != null)
+        {
+            oldProduct.setProductId(productToEdit.getProductId());
+            Product.editProduct(oldProduct);
+            cancel(new ActionEvent());
+        }
 
     }
 
@@ -173,6 +182,8 @@ public class DialogController implements Initializable
             addProduct();
         else if(mode == UPDATE_MODE)
             editProduct();
+
+        
     }
 
 }
