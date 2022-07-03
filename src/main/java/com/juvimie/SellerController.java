@@ -4,9 +4,14 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class SellerController 
 {
@@ -42,8 +47,20 @@ public class SellerController
     private TableColumn<?, ?> typeOfProductCol;
 
     @FXML
-    void addProduct(ActionEvent event) {
+    void addProduct(ActionEvent event) throws IOException 
+    {
+        Parent root = App.loadFXML("dialog");
+        
+        Stage addProductStage = new Stage();
+        addProductStage.setTitle("Add Product");
 
+        Scene addProductScene = new Scene(root);
+        addProductStage.setScene(addProductScene);
+
+        addProductStage.initModality(Modality.WINDOW_MODAL);
+        addProductStage.initOwner(addProductBtn.getScene().getWindow());
+        addProductStage.show();
+      
     }
 
     @FXML

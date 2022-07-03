@@ -15,7 +15,7 @@ public class ConnSqlite
     private static String getDatabasePath() throws IOException
     {
         String path = new File(".").getCanonicalPath();
-        path += "data/data.db";
+        path += "/data/data.db";
 
         return path;
     }
