@@ -129,8 +129,18 @@ public class SellerController implements Initializable
     }
 
     @FXML
-    void editProduct(ActionEvent event) {
+    void editProduct(ActionEvent event) throws IOException 
+    {
+        Product product = storeTable.getSelectionModel().getSelectedItem();
+        
+        FXMLLoader loader = new FXMLLoader(App.loadFXMLloader("dialog"));
+        Parent root = loader.load();
 
+        DialogController dialogController = loader.getController();
+        dialogController.setMode(product);
+        dialogController.setSellerController(this);
+
+        App.createModal(root, addProductBtn.getScene().getWindow(), "Edit Product");
     }
 
     @FXML

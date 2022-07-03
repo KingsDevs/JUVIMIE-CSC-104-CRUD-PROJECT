@@ -48,6 +48,17 @@ public class DialogController implements Initializable
         this.mode = ADD_MODE;
     }
 
+    public void setMode(Product product)
+    {
+        this.mode = UPDATE_MODE;
+
+        productNameField.setText(product.getProductName());
+        prizeField.setText(product.getProductPrize().toString());
+        quantityField.setText(product.getQuantity().toString());
+        productTypeField.setValue(product.getProductType());
+        countryOfOriginField.setValue(product.getProductOrigin());
+    }
+
     public void setSellerController(SellerController sellerController)
     {
         this.sellerController = sellerController;
