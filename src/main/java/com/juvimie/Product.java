@@ -60,6 +60,16 @@ public class Product
         return productOrigin;
     }
 
+    public static ResultSet getAllProducts() throws SQLException, IOException
+    {
+        String sql = "SELECT * FROM product";
+
+        Statement statement = ConnSqlite.getStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        return resultSet;
+    }
+
     public static ResultSet getProductTypes() throws SQLException, IOException
     {
         String sql = "SELECT * FROM type_of_product";
