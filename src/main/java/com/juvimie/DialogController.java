@@ -120,13 +120,14 @@ public class DialogController implements Initializable
     }
 
 
-    private void addProduct()
+    private void addProduct() throws IOException, SQLException
     {
         Product newProduct = getProductFromFields();
 
         if(newProduct != null)
         {
-            
+            Product.insertProduct(newProduct);
+            cancel(new ActionEvent());
         }
 
     }
@@ -143,7 +144,7 @@ public class DialogController implements Initializable
     }
 
     @FXML
-    void comfirm(ActionEvent event) 
+    void comfirm(ActionEvent event) throws IOException, SQLException
     {
         if(mode == ADD_MODE)
             addProduct();

@@ -1,6 +1,8 @@
 package com.juvimie;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -76,6 +78,23 @@ public class Product
         ResultSet resultSet = statement.executeQuery(sql);
 
         return resultSet;
+    }
+
+    public static void insertProduct(Product newProduct) throws IOException, SQLException
+    {
+        String sql = "INSERT INTO product (product_name, product_prize, quantity, product_type, product_origin) ";
+        sql += "VALUES(?,?,?,?,?)";
+
+        Connection connection = ConnSqlite.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        
+        preparedStatement.setString(1, newProduct.getProductName());
+        preparedStatement.setDouble(2, newProduct.getProductPrize());
+        preparedStatement.setInt(3, newProduct.getQuantity());
+        preparedStatement.setString(4, newProduct.getProductType());
+        preparedStatement.setString(5, newProduct.getProductOrigin());
+        
+        preparedStatement.executeUpdate();
     }
 
 }
