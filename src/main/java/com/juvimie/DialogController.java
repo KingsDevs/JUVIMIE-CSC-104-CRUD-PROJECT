@@ -1,6 +1,9 @@
 package com.juvimie;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -17,7 +20,7 @@ public class DialogController implements Initializable
 {
 
     @FXML
-    private ChoiceBox<?> countryOfOriginField;
+    private ChoiceBox<String> countryOfOriginField;
 
     @FXML
     private Button okButton;
@@ -29,7 +32,7 @@ public class DialogController implements Initializable
     private TextField productNameField;
 
     @FXML
-    private ChoiceBox<?> productTypeField;
+    private ChoiceBox<String> productTypeField;
 
     @FXML
     private TextField quantityField;
@@ -38,9 +41,9 @@ public class DialogController implements Initializable
     public final static int ADD_MODE = 1;
     public final static int UPDATE_MODE = 2;
 
-    public void setMode(int mode)
+    public void setMode()
     {
-        this.mode = mode;
+        this.mode = ADD_MODE;
     }
 
     @Override
@@ -67,6 +70,40 @@ public class DialogController implements Initializable
             }
         });
 
+        try {
+            ResultSet productTypes = Product.getProductTypes();
+
+            while (productTypes.next()) 
+            {
+                String productType = productTypes.getString(1);
+                productTypeField.getItems().add(productType);
+            }
+
+            ResultSet countries = Product.getCountries();
+
+            while (countries.next()) 
+            {
+                String country = countries.getString(1);
+                countryOfOriginField.getItems().add(country);
+            }
+        } 
+        catch (SQLException | IOException e) {
+            
+            e.printStackTrace();
+        }
+        
+       
+
+
+    }
+
+    private void addProduct()
+    {
+
+    }
+
+    private void editProduct()
+    {
 
     }
 
@@ -79,7 +116,10 @@ public class DialogController implements Initializable
     @FXML
     void comfirm(ActionEvent event) 
     {
-
+        if(mode == ADD_MODE)
+            addProduct();
+        else if(mode == UPDATE_MODE)
+            editProduct();
     }
 
 }

@@ -53,10 +53,9 @@ public class SellerController
         Parent root = loader.load();
         
         DialogController dialogController = loader.getController();
-        dialogController.setMode(DialogController.ADD_MODE);
+        dialogController.setMode();
 
         App.createModal(root, addProductBtn.getScene().getWindow(), "Add Product");
-        
       
     }
 

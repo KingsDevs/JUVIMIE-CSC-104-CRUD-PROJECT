@@ -1,5 +1,10 @@
 package com.juvimie;
 
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class Product 
 {
     private int productId;
@@ -42,6 +47,26 @@ public class Product
     public String getProductOrigin()
     {
         return productOrigin;
+    }
+
+    public static ResultSet getProductTypes() throws SQLException, IOException
+    {
+        String sql = "SELECT * FROM type_of_product";
+
+        Statement statement = ConnSqlite.getStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        return resultSet;
+    }
+
+    public static ResultSet getCountries() throws SQLException, IOException
+    {
+        String sql = "SELECT * FROM countries";
+
+        Statement statement = ConnSqlite.getStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        return resultSet;
     }
 
 }
