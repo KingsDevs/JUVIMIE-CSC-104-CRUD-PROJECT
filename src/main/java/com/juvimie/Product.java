@@ -24,6 +24,15 @@ public class Product
         this.productOrigin = productOrigin;
     }
 
+    public Product(String productName, Double productPrize, int quantity, String productType, String productOrigin)
+    {
+        this.productName = productName;
+        this.productPrize = productPrize;
+        this.quantity = quantity;
+        this.productType = productType;
+        this.productOrigin = productOrigin;
+    }
+
     public String getProductName()
     {
         return productName;

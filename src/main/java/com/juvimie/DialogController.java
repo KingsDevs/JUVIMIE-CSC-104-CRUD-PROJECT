@@ -46,6 +46,31 @@ public class DialogController implements Initializable
         this.mode = ADD_MODE;
     }
 
+    private Product getProductFromFields()
+    {
+        String productName = productNameField.getText();
+        String productPrizeStr = prizeField.getText();
+        String quantityStr = quantityField.getText();
+        String productType = productTypeField.getValue();
+        String productOrigin = countryOfOriginField.getValue();
+
+        if(!(
+            (productName.isEmpty() || productName.isBlank()) &&
+            (productPrizeStr.isEmpty() || productPrizeStr.isBlank()) &&
+            (quantityStr.isEmpty() || quantityStr.isBlank()) &&
+            (productType.isEmpty() || productType.isBlank()) &&
+            (productOrigin.isEmpty() || productOrigin.isBlank())
+        ))
+        {
+            Double productPrize = Double.parseDouble(productPrizeStr);
+            int quantity = Integer.parseInt(quantityStr);
+
+            return new Product(productName, productPrize, quantity, productType, productOrigin);
+        }
+
+        return null;
+    }
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) 
     {
@@ -91,14 +116,18 @@ public class DialogController implements Initializable
             
             e.printStackTrace();
         }
-        
-       
-
 
     }
 
+
     private void addProduct()
     {
+        Product newProduct = getProductFromFields();
+
+        if(newProduct != null)
+        {
+            
+        }
 
     }
 
