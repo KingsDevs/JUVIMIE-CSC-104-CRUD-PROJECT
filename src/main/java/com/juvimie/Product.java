@@ -35,6 +35,11 @@ public class Product
         this.productOrigin = productOrigin;
     }
 
+    public Integer getProductId()
+    {
+        return productId;
+    }
+
     public String getProductName()
     {
         return productName;
@@ -104,6 +109,18 @@ public class Product
         preparedStatement.setString(4, newProduct.getProductType());
         preparedStatement.setString(5, newProduct.getProductOrigin());
         
+        preparedStatement.executeUpdate();
+    }
+
+    public static void deleteProduct(int id) throws IOException, SQLException
+    {
+        String sql = "DELETE FROM product WHERE product_id = ?";
+
+        Connection connection = ConnSqlite.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        preparedStatement.setInt(1, id);
+
         preparedStatement.executeUpdate();
     }
 

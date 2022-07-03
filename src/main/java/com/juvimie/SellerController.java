@@ -12,9 +12,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class SellerController implements Initializable
@@ -133,6 +136,24 @@ public class SellerController implements Initializable
     @FXML
     void removeProduct(ActionEvent event) 
     {
+        Product product = storeTable.getSelectionModel().getSelectedItem();
+        int productId = product.getProductId();
+
+        Alert confirmToDelete = new Alert(AlertType.CONFIRMATION);
+        confirmToDelete.setContentText("Are you sure to delete this product " + product.getProductName() + "?");
+
+        confirmToDelete.showAndWait().ifPresent(response -> {
+            if(response == ButtonType.OK)
+            {
+                try {
+                    Product.deleteProduct(productId);
+                    updateTable();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 
