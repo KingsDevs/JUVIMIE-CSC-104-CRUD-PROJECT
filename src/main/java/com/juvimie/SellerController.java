@@ -65,6 +65,24 @@ public class SellerController implements Initializable
             e.printStackTrace();
         }
 
+        editProductBtn.setDisable(true);
+        removeProductBtn.setDisable(true);
+
+        storeTable.getSelectionModel().selectedIndexProperty().addListener(
+            (obs , oldSelection, newSelection) ->  {
+                if(newSelection != null)
+                {
+                    editProductBtn.setDisable(false);
+                    removeProductBtn.setDisable(false);
+                }
+                else
+                {
+                    editProductBtn.setDisable(true);
+                    removeProductBtn.setDisable(true);
+                }
+            }
+        );
+
     }
 
     public void updateTable() throws SQLException, IOException
@@ -95,6 +113,7 @@ public class SellerController implements Initializable
         
         DialogController dialogController = loader.getController();
         dialogController.setMode();
+        dialogController.setSellerController(this);
 
         App.createModal(root, addProductBtn.getScene().getWindow(), "Add Product");
       
@@ -112,7 +131,8 @@ public class SellerController implements Initializable
     }
 
     @FXML
-    void removeProduct(ActionEvent event) {
+    void removeProduct(ActionEvent event) 
+    {
 
     }
 

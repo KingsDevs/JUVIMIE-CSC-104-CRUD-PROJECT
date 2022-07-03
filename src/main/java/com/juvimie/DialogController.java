@@ -41,9 +41,16 @@ public class DialogController implements Initializable
     public final static int ADD_MODE = 1;
     public final static int UPDATE_MODE = 2;
 
+    private SellerController sellerController;
+
     public void setMode()
     {
         this.mode = ADD_MODE;
+    }
+
+    public void setSellerController(SellerController sellerController)
+    {
+        this.sellerController = sellerController;
     }
 
     private Product getProductFromFields()
@@ -140,6 +147,11 @@ public class DialogController implements Initializable
     @FXML
     void cancel(ActionEvent event) {
         Stage stage =  (Stage)okButton.getScene().getWindow();
+        try {
+            sellerController.updateTable();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         stage.close();
     }
 
