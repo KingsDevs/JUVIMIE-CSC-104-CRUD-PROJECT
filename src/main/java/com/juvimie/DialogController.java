@@ -11,9 +11,12 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class DialogController implements Initializable
@@ -158,10 +161,25 @@ public class DialogController implements Initializable
         if(oldProduct != null)
         {
             oldProduct.setProductId(productToEdit.getProductId());
-            Product.editProduct(oldProduct);
-            cancel(new ActionEvent());
-        }
+            
 
+            Alert confirmToUpdate = new Alert(AlertType.CONFIRMATION);
+            confirmToUpdate.setContentText("Are you sure to edit this product " + productToEdit.getProductName() + "?");
+
+            confirmToUpdate.showAndWait().ifPresent(response -> {
+                if(response == ButtonType.OK)
+                {
+                    try {
+                        Product.editProduct(oldProduct);
+                        cancel(new ActionEvent());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            
+        }
+        
     }
 
     @FXML
