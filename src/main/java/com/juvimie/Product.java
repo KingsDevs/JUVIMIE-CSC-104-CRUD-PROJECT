@@ -45,9 +45,19 @@ public class Product
         return productName;
     }
 
+    public void setProductName(String productName)
+    {
+        this.productName = productName;
+    }
+
     public Double getProductPrize()
     {
         return productPrize;
+    }
+
+    public void setProductPrize(Double productPrize)
+    {
+        this.productPrize = productPrize;
     }
 
     public Integer getQuantity()
@@ -55,14 +65,29 @@ public class Product
         return quantity;
     }
 
+    public void setQuantity(int quantity)
+    {
+        this.quantity = quantity;
+    }
+
     public String getProductType()
     {
         return productType;
     }
 
+    public void setProductType(String productType)
+    {
+        this.productType = productType;
+    }
+
     public String getProductOrigin()
     {
         return productOrigin;
+    }
+
+    public void setProductOrigin(String productOrigin)
+    {
+        this.productOrigin = productOrigin;
     }
 
     public static ResultSet getAllProducts() throws SQLException, IOException
@@ -110,6 +135,11 @@ public class Product
         preparedStatement.setString(5, newProduct.getProductOrigin());
         
         preparedStatement.executeUpdate();
+    }
+
+    public static void editProduct(Product product)
+    {
+
     }
 
     public static void deleteProduct(int id) throws IOException, SQLException
