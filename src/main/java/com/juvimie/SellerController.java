@@ -49,17 +49,14 @@ public class SellerController
     @FXML
     void addProduct(ActionEvent event) throws IOException 
     {
-        Parent root = App.loadFXML("dialog");
+        FXMLLoader loader = new FXMLLoader(App.loadFXMLloader("dialog"));
+        Parent root = loader.load();
         
-        Stage addProductStage = new Stage();
-        addProductStage.setTitle("Add Product");
+        DialogController dialogController = loader.getController();
+        dialogController.setMode(DialogController.ADD_MODE);
 
-        Scene addProductScene = new Scene(root);
-        addProductStage.setScene(addProductScene);
-
-        addProductStage.initModality(Modality.WINDOW_MODAL);
-        addProductStage.initOwner(addProductBtn.getScene().getWindow());
-        addProductStage.show();
+        App.createModal(root, addProductBtn.getScene().getWindow(), "Add Product");
+        
       
     }
 

@@ -1,7 +1,9 @@
 com\juvimie\App.class
 com\juvimie\ConnSqlite.class
 module-info.class
+com\juvimie\DialogController$1.class
 com\juvimie\Product.class
 com\juvimie\SellerController.class
 com\juvimie\MainController.class
 com\juvimie\DialogController.class
+com\juvimie\DialogController$2.class
